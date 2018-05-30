@@ -10,21 +10,27 @@ pipeline {
         stage ('Compile Stage') {
 
             steps {
-                echo "Compile"
+                withMaven(maven : 'maven_3_5_2') {
+                    bat 'mvn compile'
+                }
             }
         }
 
         stage ('Testing Stage') {
 
             steps {
-                echo "Testing"
+                withMaven(maven : 'maven_3_5_2') {
+                    bat 'mvn test'
+                }
             }
         }
 
 
         stage ('Deployment Stage') {
             steps {
-               echo "Deployment"
+                withMaven(maven : 'maven_3_5_2') {
+                    bat 'mvn deploy'
+                }
             }
         }
     }
